@@ -1,0 +1,25 @@
+2014/09/12 15:01:07 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: '' for column 'create_time' at row 1. The SQL statement executed was: INSERT INTO `tbl_project` (`name`, `description`, `create_time`, `create_user_id`, `update_time`, `update_user_id`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5).
+in /usr/share/nginx/html/trackstar/protected/controllers/ProjectController.php (73)
+in /usr/share/nginx/html/trackstar/index.php (13)
+2014/09/12 15:01:07 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect datetime value: '' for column 'create_time' at row 1. The SQL statement executed was: INSERT INTO `tbl_project` (`name`, `description`, `create_time`, `create_user_id`, `update_time`, `update_user_id`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5)' in /usr/share/nginx/html/yii/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /usr/share/nginx/html/yii/framework/db/ar/CActiveRecord.php(1077): CDbCommand->execute()
+#1 /usr/share/nginx/html/yii/framework/db/ar/CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 /usr/share/nginx/html/trackstar/protected/controllers/ProjectController.php(73): CActiveRecord->save()
+#3 /usr/share/nginx/html/yii/framework/web/actions/CInlineAction.php(49): ProjectController->actionCreate()
+#4 /usr/share/nginx/html/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /usr/share/nginx/html/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /usr/share/nginx/html/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /usr/share/nginx/html/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /usr/share/nginx/html/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /usr/share/nginx/html/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /usr/share/nginx/html/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /usr/share/nginx/html/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /usr/share/nginx/html/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#13 /usr/share/nginx/html/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('project/create')
+#14 /usr/share/nginx/html/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /usr/share/nginx/html/trackstar/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/trackstar/index.php?r=project/create
+HTTP_REFERER=http://localhost/trackstar/index.php?r=project/create
+---
