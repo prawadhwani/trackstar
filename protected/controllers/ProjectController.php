@@ -48,11 +48,22 @@ class ProjectController extends Controller
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
+     * Making the issues being listed on the project's page
 	 */
-	public function actionView($id)
+	public function actionView()
 	{
+        $issueDataProvider = new CActiveDataProvider('Issue', array(
+            'criteria'=>array(
+                'condition'=>'project_id=:projectId',
+                'params'=>array(':projectId'=>$this->loadModel()->id),
+            ),
+            'pagination'=>array(
+                'pageSize'=>1,
+            ),
+        ));
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$this->loadModel(),
+            'issueDataProvider'=>$issueDataProvider,
 		));
 	}
 
