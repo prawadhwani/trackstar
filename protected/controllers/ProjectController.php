@@ -8,7 +8,13 @@ class ProjectController extends Controller
 	 */
 	public $layout='//layouts/column2';
 
-	/**
+    /**
+     * @var CActiveRecord the currently loaded data model instance.
+     */
+    private $_model;
+
+
+    /**
 	 * @return array action filters
 	 */
 	public function filters()
@@ -95,9 +101,9 @@ class ProjectController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id)
+	public function actionUpdate()
 	{
-		$model=$this->loadModel($id);
+		$model=$this->loadModel();
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -119,9 +125,9 @@ class ProjectController extends Controller
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($id)
+	public function actionDelete()
 	{
-		$this->loadModel($id)->delete();
+		$this->loadModel()->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
@@ -161,12 +167,16 @@ class ProjectController extends Controller
 	 * @return Project the loaded model
 	 * @throws CHttpException
 	 */
-	public function loadModel($id)
+	public function loadModel()
 	{
-		$model=Project::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		return $model;
+        if($this->_model === null)
+        {
+            if(isset($_GET['id']))
+                $this->_model=Project::model()->findByPk($_GET['id']);
+            if($this->_model===null)
+                throw new CHttpException(404,'The requested page does not exist.');
+        }
+        return $this->_model;
 	}
 
 	/**

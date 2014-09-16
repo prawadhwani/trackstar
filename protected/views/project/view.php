@@ -34,7 +34,7 @@ $this->menu=array(
 
 <br>
 <h1>Project Issues</h1>
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php $this->widget('zii.widgets.CListView', array(
     'dataProvider'=>$issueDataProvider,
     'itemView'=>'/issue/_view',
 )); ?>
