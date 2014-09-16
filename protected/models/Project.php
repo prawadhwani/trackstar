@@ -12,7 +12,7 @@
  * @property string $update_time
  * @property integer $update_user_id
  */
-class Project extends CActiveRecord
+class Project extends TrackStarActiveRecord
 {
 	/**
 	 * @return string the associated database table name
